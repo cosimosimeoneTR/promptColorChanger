@@ -26,14 +26,14 @@ availableColors[22]="103"
 availableColors[23]="104"
 availableColors[24]="105"
 availableColors[25]="106"
-
+availableColorsCnt=25
 
 
 export IP_SUBNET=`ip addr show eth0 | grep "inet " | cut -d. -f3,4| \cut -d "/" -f1|  awk -F"." '{print $1, $2}'`
 
 octet3=`echo $IP_SUBNET | cut -c -3`
 octet4=`echo $IP_SUBNET | cut -c 3-6`
-let "useColor = ($octet3 + $octet4 ) % 25"
+let "useColor = ($octet3 + $octet4 ) % $availableColorsCnt"
 
 echo -e "The prompt color will be \e[${availableColors[useColor]}mLIKE THIS (availableColors[$useColor], which is ${availableColors[useColor]})\e[39m\e[49m"
 echo "Now you do the export PS1 etc etc etc"
